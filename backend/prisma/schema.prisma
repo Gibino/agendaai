@@ -1,0 +1,75 @@
+generator client {
+  provider = "prisma-client-js"
+  engineType = "library"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id            String         @id @default(uuid())
+  name          String?
+  email         String?        @unique
+  emailVerified Boolean        @default(false)
+  phone         String?        @unique
+  phoneVerified Boolean        @default(false)
+  passwordHash  String?
+  googleId      String?        @unique
+  appleId       String?        @unique
+  avatarUrl     String?
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  otpCodes      OtpCode[]
+  refreshTokens RefreshToken[]
+}
+
+model OtpCode {
+  id        String    @id @default(uuid())
+  userId    String
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  code      String
+  channel   OtpChannel
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+}
+
+enum OtpChannel {
+  SMS
+  WHATSAPP
+}
+
+model RefreshToken {
+  id        String    @id @default(uuid())
+  userId    String
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  token     String    @unique
+  expiresAt DateTime
+  revokedAt DateTime?
+  createdAt DateTime  @default(now())
+}
+
+model Category {
+  id        String    @id @default(uuid())
+  name      String
+  slug      String    @unique
+  icon      String?
+  createdAt DateTime  @default(now())
+  companies Company[]
+}
+
+model Company {
+  id          String   @id @default(uuid())
+  name        String
+  description String?
+  phone       String
+  categoryId  String
+  category    Category @relation(fields: [categoryId], references: [id])
+  city        String?
+  state       String?
+  address     String?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
