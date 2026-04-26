@@ -67,5 +67,3 @@ Para rodar via Docker:
 docker build -t agenda-ai-backend .
 docker run -p 3000:3000 agenda-ai-backend
 ```
-# agenda-ai
-# agenda-ai
