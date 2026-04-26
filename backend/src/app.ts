@@ -7,6 +7,8 @@ import { env } from './config/env.js';
 import authRouter from './modules/auth/auth.router.js';
 import categoriesRouter from './modules/categories/categories.router.js';
 import companiesRouter from './modules/companies/companies.router.js';
+import bannersRouter from './modules/banners/banners.router.js';
+import promotionsRouter from './modules/promotions/promotions.router.js';
 import { notFound } from './middlewares/notFound.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 import { globalLimiter } from './middlewares/rateLimiter.js';
@@ -24,6 +26,8 @@ app.use(pinoHttp({ logger }));
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/categorias', categoriesRouter);
 app.use('/api/v1/empresas', companiesRouter);
+app.use('/api/v1/banners', bannersRouter);
+app.use('/api/v1/promocoes', promotionsRouter);
 
 // Health check
 app.get('/health', (req, res) => {

@@ -1,6 +1,6 @@
-# Agenda AI - Backend MVP
+# Agenda AI — Backend
 
-Este é o backend do sistema **Agenda AI**, um serviço de diretório e agendamento para pequenas empresas (cabeleireiros, mecânicos, alfaiates, etc.).
+Este é o backend do sistema **Agenda AI**, um serviço de diretório de serviços para pequenas empresas (cabeleireiros, mecânicos, alfaiates, etc.).
 
 ## 🚀 Tecnologias
 
@@ -13,22 +13,27 @@ Este é o backend do sistema **Agenda AI**, um serviço de diretório e agendame
 - **Vitest & Supertest** (Testes)
 - **Docker** (Containerização)
 
-## 🛠️ Funcionalidades Principais
+## 🛠️ Módulos e Funcionalidades
 
-- **Autenticação:**
+- **Autenticação** (`/api/v1/auth`)**:**
   - Login e registro via E-mail/Senha.
   - Login via Telefone (OTP SMS/WhatsApp via Twilio).
   - Social Login (Google e Apple).
   - Rotação de Refresh Tokens (com hash de segurança).
-- **Diretório:**
-  - Busca e filtragem de empresas por categoria.
+- **Diretório** (`/api/v1/empresas`)**:**
+  - Busca e filtragem de empresas por nome e categoria.
   - Geração automática de links para WhatsApp das empresas.
-- **Admin:**
-  - Middleware de proteção via Admin Key.
-  - CRUD de categorias e empresas (exclusivo para admins no MVP).
+- **Categorias** (`/api/v1/categorias`)**:**
+  - Listagem pública de categorias de serviço.
+- **Banners** (`/api/v1/banners`)**:**
+  - Listagem pública de banners ativos (carrossel da home).
+  - CRUD admin para gerenciar título, imagem e link do banner.
+- **Promoções** (`/api/v1/promocoes`)**:**
+  - Listagem pública de promoções ativas no período atual.
+  - CRUD admin para criar e gerenciar promoções vinculadas a empresas.
 - **Segurança:**
   - Rate limiting (Global e específico para Auth).
-  - CORS configurável.
+  - CORS configurável via variável de ambiente.
   - Helmet para headers de segurança.
 
 ## ⚙️ Configuração

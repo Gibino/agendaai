@@ -25,13 +25,13 @@ Agenda-AI connects service providers (hairdressers, mechanics, tailors, etc.) wi
 | Directory | Description | Status |
 | :--- | :--- | :--- |
 | [`backend/`](./backend) | Node.js API with TypeScript, Prisma, and PostgreSQL | **Production Ready** |
-| [`frontend/`](./frontend) | React/Next.js Web Application | *Coming Soon* |
+| [`frontend/`](./frontend) | Flutter mobile app for Android & iOS | **In Development** |
 
 ---
 
 ## 🛠️ Tech Stack
 
-### Backend Core
+### Backend
 - **Language:** TypeScript
 - **Runtime:** Node.js 20+
 - **Framework:** Express (v5.x)
@@ -39,6 +39,12 @@ Agenda-AI connects service providers (hairdressers, mechanics, tailors, etc.) wi
 - **Authentication:** JWT (Jose), Bcrypt.js
 - **Logging:** Pino & Morgan
 - **Validation:** Zod
+
+### Frontend
+- **Framework:** Flutter 3.x (Android & iOS)
+- **State Management:** Riverpod 2
+- **Navigation:** go_router
+- **HTTP Client:** Dio with token auto-refresh
 
 ### Security & DevOps
 - **Security:** Helmet, Express Rate Limit

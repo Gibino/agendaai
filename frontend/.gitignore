@@ -1,0 +1,32 @@
+# Dart/Flutter
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+build/
+
+# Gerados pelo build_runner (não versionar)
+*.freezed.dart
+*.g.dart
+
+# Pub
+pubspec.lock
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# Android
+android/local.properties
+android/.gradle/
+android/app/google-services.json
+
+# iOS
+ios/Flutter/flutter_export_environment.sh
+ios/Flutter/Generated.xcconfig
+ios/Pods/
+ios/Runner.xcworkspace/xcuserdata/
+
+# Secrets
+.env
