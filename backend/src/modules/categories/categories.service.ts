@@ -8,9 +8,15 @@ export class CategoriesService {
   }
 
   // Admin only
-  async create(name: string, description?: string, icon?: string) {
+  async create(name: string, icon?: string) {
+    const slug = name
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/(^-|-$)+/g, '');
     return prisma.category.create({
-      data: { name, description, icon },
+      data: { name, slug, icon },
     });
   }
 

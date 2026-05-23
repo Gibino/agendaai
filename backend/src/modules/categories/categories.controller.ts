@@ -14,11 +14,11 @@ export const listCategories = async (req: Request, res: Response) => {
 
 export const createCategory = async (req: Request, res: Response) => {
   try {
-    const { name, description, icon } = req.body;
+    const { name, icon } = req.body;
     if (!name) {
       return res.status(400).json({ erro: 'Nome é obrigatório' });
     }
-    const category = await categoriesService.create(name, description, icon);
+    const category = await categoriesService.create(name, icon);
     res.status(201).json({ dados: category });
   } catch (error: any) {
     res.status(500).json({ erro: error.message });
@@ -27,7 +27,7 @@ export const createCategory = async (req: Request, res: Response) => {
 
 export const deleteCategory = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
+    const id = req.params.id as string;
     await categoriesService.delete(id);
     res.status(204).send();
   } catch (error: any) {

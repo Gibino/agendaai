@@ -38,7 +38,7 @@ export const createBanner = async (req: Request, res: Response) => {
 
 export const updateBanner = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
+    const id = req.params.id as string;
     const banner = await bannersService.update(id, req.body);
     res.status(200).json({ dados: banner });
   } catch (error: any) {
@@ -48,7 +48,7 @@ export const updateBanner = async (req: Request, res: Response) => {
 
 export const deleteBanner = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
+    const id = req.params.id as string;
     await bannersService.delete(id);
     res.status(204).send();
   } catch (error: any) {

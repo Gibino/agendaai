@@ -24,7 +24,7 @@ export const listCompanies = async (req: Request, res: Response) => {
 
 export const getCompany = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
+    const id = req.params.id as string;
     const company = await companiesService.getById(id);
     
     if (!company) {
@@ -59,7 +59,7 @@ export const createCompany = async (req: Request, res: Response) => {
 
 export const deleteCompany = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
+    const id = req.params.id as string;
     await companiesService.delete(id);
     res.status(204).send();
   } catch (error: any) {

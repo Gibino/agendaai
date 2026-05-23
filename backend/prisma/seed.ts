@@ -1,5 +1,10 @@
 import { PrismaClient } from '@prisma/client';
-const prisma = new PrismaClient();
+import { PrismaPg } from '@prisma/adapter-pg';
+import pg from 'pg';
+
+const pool = new pg.Pool({ connectionString: process.env.DATABASE_URL });
+const adapter = new PrismaPg(pool);
+const prisma = new PrismaClient({ adapter });
 
 async function main() {
   console.log('🌱 Iniciando o seed...');
@@ -8,11 +13,11 @@ async function main() {
   await prisma.category.deleteMany({});
 
   const categorias = [
-    { name: 'Beleza', description: 'Cabeleireiros, Manicures, Estética', icon: 'Scissors' },
-    { name: 'Serviços Automotivos', description: 'Mecânicas, Funilaria, Lava rápido', icon: 'Car' },
-    { name: 'Vestuário', description: 'Alfaiates, Costureiras, Lojas', icon: 'Shirt' },
-    { name: 'Saúde', description: 'Dentistas, Fisioterapeutas, Clínicas', icon: 'HeartPulse' },
-    { name: 'Aulas', description: 'Professores particulares, Idiomas, Música', icon: 'GraduationCap' },
+    { name: 'Beleza', slug: 'beleza', icon: 'Scissors' },
+    { name: 'Serviços Automotivos', slug: 'servicos-automotivos', icon: 'Car' },
+    { name: 'Vestuário', slug: 'vestuario', icon: 'Shirt' },
+    { name: 'Saúde', slug: 'saude', icon: 'HeartPulse' },
+    { name: 'Aulas', slug: 'aulas', icon: 'GraduationCap' },
   ];
 
   console.log('Criando categorias...');

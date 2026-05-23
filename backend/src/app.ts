@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
-import pinoHttp from 'pino-http';
+import { pinoHttp } from 'pino-http';
 import { logger } from './lib/logger.js';
 import { env } from './config/env.js';
 import authRouter from './modules/auth/auth.router.js';

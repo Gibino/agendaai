@@ -45,7 +45,7 @@ export const createPromotion = async (req: Request, res: Response) => {
 
 export const updatePromotion = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
+    const id = req.params.id as string;
     const data = { ...req.body };
     if (data.startsAt) data.startsAt = new Date(data.startsAt);
     if (data.endsAt) data.endsAt = new Date(data.endsAt);
@@ -58,7 +58,7 @@ export const updatePromotion = async (req: Request, res: Response) => {
 
 export const deletePromotion = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
+    const id = req.params.id as string;
     await promotionsService.delete(id);
     res.status(204).send();
   } catch (error: any) {
